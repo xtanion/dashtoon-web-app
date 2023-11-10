@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container'
 import '../index.css'
 import './Output'
 import { IndvImage } from './Image';
+import { Spinner } from './Spinner';
 
 interface State {
     ispending: boolean;
@@ -15,7 +16,7 @@ class Generate extends Component<{}, State> {
     constructor(props: {}) {
         super(props);
         this.state = {
-            ispending: true,
+            ispending: true, // set to true (for testing only)
             description: '',
             image: null,
             error: null,
@@ -55,7 +56,7 @@ class Generate extends Component<{}, State> {
         }
         const image = await Promise.all(imageBlobs);
         this.setState({ image });
-        const ispending = false;
+        const ispending = true; // set to true
         this.setState({ ispending });
     }
 
@@ -68,6 +69,10 @@ class Generate extends Component<{}, State> {
 
     handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
+        const ispending = false;
+        const image = null;
+        this.setState({ ispending });
+        this.setState({ image });
         console.log('Input:', this.state);
         this.fetchall(this.state.description);
     };
@@ -75,44 +80,29 @@ class Generate extends Component<{}, State> {
     render() {
         const { ispending, description, image, error } = this.state;
         return (
-            <div className='container'>
-                <div className='container__item'>
-                    <form className='form' onSubmit={this.handleSubmit}>
+            <div className='task-page'>
+                <div className='image-prompt-form-wrapper'>
+                    <form className='image-prompt-form desktop' autoComplete='off' onSubmit={this.handleSubmit}>
+                        {/* <label><span className="screen-reader-text">Search for:</span></label> */}
                         <input
                             type="text"
                             name="description"
-                            className="form__field"
+                            className="text-input text-input-outlined image-prompt-input"
                             placeholder='Start with a detailed description'
                             value={description}
                             onChange={this.handleChange}
                         />
-                        <button className='btn btn--primary' type='submit'>GENERATE</button>
+                        <button className='btn btn-filled btn-secondary image-prompt-btn' type='submit'>Generate</button>
                     </form>
                 </div>
-                <div className='loading'>
 
+                <div className='loading'>
+                    {ispending ? (<div> </div>) : (<Spinner />)}
                 </div>
-                
-                {/* <div className='image-preview'> */}
-                    {/* {error ? (
-                        <div>Error loading image: {error.message}</div>
-                    ) : (
-                        image ? (<img src={URL.createObjectURL(image[0])} alt="Image" />)
-                            : (
-                                <div> </div>
-                            )
-                    )} */}
-                    
-                    {/* {image ? (image.map((imgblob, index) => (
-                        <IndvImage key={index} imageblob={imgblob} />
-                        // <div key={index} className='generated-image'>
-                        //     <img src={URL.createObjectURL(imgblob)} />
-                        // </div>
-                        ))) : (<div> </div>)
-                    } */}
-                
-                {image? (<IndvImage image={image}/>) : (<div> </div>)}
-                {/* </div> */}
+
+                <div className='task-page-generations'>
+                    {image ? (<IndvImage image={image} />) : (<div> </div>)}
+                </div>
             </div>
 
         );

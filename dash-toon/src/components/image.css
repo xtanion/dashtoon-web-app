@@ -23,9 +23,17 @@ body {
 }
 
 .container-image {
-    /* max-width: 100rem; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* grid-auto-flow: column; */
+    /* grid-template-columns: auto auto auto auto auto; */
+    /* grid-template-columns: repeat(auto-fit, minmax(min(100%/3, max(64px, 100%/5)), 1fr)); */
+    gap: 10px;
     margin-top: 15px;
-    padding: 0 2rem 2rem;
+    height: 100%;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .gallery {
@@ -36,9 +44,10 @@ body {
 }
 
 .gallery-item {
-    display: inline-flex;
-    width: 500px;
-    height: 500px;
+    /* display: inline-flex; */
+    max-width: 300px;
+    width: 100%;
+    height: 100%;
     /* Minimum width of 24rem and grow to fit available space */
     flex: 1 0 24rem;
     /* Margin value should be half of grid-gap value as margins on flex items don't collapse */
@@ -53,11 +62,11 @@ body {
     height: 100%;
     padding: 10px;
     object-fit: cover;
-    transition: transform 500ms ease-out;
+    transition: transform 0.5s ease-out;
 }
 
 .gallery-image:hover {
-    transform: scale(0.90);
+    transform: scale(1.10);
 }
 
 @supports (display: grid) {
