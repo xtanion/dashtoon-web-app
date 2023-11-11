@@ -44,9 +44,10 @@ class Generate extends Component<{}, State> {
             throw new Error(`Http error code ${response.status}`);
         }
         const image = await response.blob(); //change to blob
+        console.log("Success");
         return image;
         // this.setState({ image })
-        // console.log("Success");
+        
     }
 
     async fetchall(data: any) {
