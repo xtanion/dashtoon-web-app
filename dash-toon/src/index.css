@@ -56,11 +56,11 @@ body,
 }
 
 .image-prompt-form.desktop {
+  position: relative;
   align-items: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
   height: 44px;
 }
 
@@ -171,4 +171,18 @@ body,
   width: 100%;
   align-items: center;
 }
+}
+
+.error-message-wrapper{
+  position: relative;
+  width: 100%;
+}
+
+.error-text {
+  width: 100%;
+  text-align: left;
+  color: #e65959;
+  font-weight: 300;
+  font-size: 11px;
+  margin: 5px;
 }

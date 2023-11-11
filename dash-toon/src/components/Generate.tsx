@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, Component } from 'react';
+import React, { ChangeEvent, FormEvent, Component, useRef } from 'react';
 import Container from 'react-bootstrap/Container'
 import '../index.css'
 import './Output'
@@ -9,6 +9,7 @@ interface State {
     ispending: boolean;
     description: string;
     image: Blob[] | null,
+    counter: number;
     error: Error | null;
 }
 
@@ -19,6 +20,7 @@ class Generate extends Component<{}, State> {
             ispending: true, // set to true (for testing only)
             description: '',
             image: null,
+            counter: 0,
             error: null,
         };
     }
@@ -60,8 +62,10 @@ class Generate extends Component<{}, State> {
         this.setState({ ispending });
     }
 
-
     handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+        const counter = e.target.value.split(',').length
+        console.log(counter);
+        this.setState({ counter });
         this.setState({
             [e.target.name]: e.target.value,
         } as unknown as Pick<State, keyof State>);
@@ -78,7 +82,7 @@ class Generate extends Component<{}, State> {
     };
 
     render() {
-        const { ispending, description, image, error } = this.state;
+        const { ispending, description, image, counter, error } = this.state;
         return (
             <div className='task-page'>
                 <div className='image-prompt-form-wrapper'>
@@ -88,12 +92,16 @@ class Generate extends Component<{}, State> {
                             type="text"
                             name="description"
                             className="text-input text-input-outlined image-prompt-input"
-                            placeholder='Start with a detailed description'
+                            placeholder='Start with a detailed description for 10 panels'
                             value={description}
                             onChange={this.handleChange}
                         />
                         <button className='btn btn-filled btn-secondary image-prompt-btn' type='submit'>Generate</button>
                     </form>
+                </div>
+
+                <div className='error-message-wrapper'>
+                    {counter < 4 && counter >0 ? (<p className='error-text'>Add atleast 4 prompts</p>) : (<p> </p>)}
                 </div>
 
                 <div className='loading'>
@@ -103,6 +111,11 @@ class Generate extends Component<{}, State> {
                 <div className='task-page-generations'>
                     {image ? (<IndvImage image={image} />) : (<div> </div>)}
                 </div>
+                {/* <div className='download-wrap'>
+                    <button className="circle">
+                        <i className='fa fa-arrow-right'></i>
+                    </button>
+                </div> */}
             </div>
 
         );

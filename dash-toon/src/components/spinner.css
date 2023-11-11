@@ -31,13 +31,13 @@ p {
     font-weight: 300;
     font-size: 12px;
 }
-p:before,
+/* p:before,
 p:after {
     content: "";
     flex: 1 1;
     border-bottom: 1px solid #969696;
     margin: auto;
-}
+} */
 
 .facts-text:before {
     margin-right: 10px

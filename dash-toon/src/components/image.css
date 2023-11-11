@@ -24,11 +24,11 @@ body {
 
 .container-image {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 2fr));
     /* grid-auto-flow: column; */
-    /* grid-template-columns: auto auto auto auto auto; */
+    /* grid-template-columns: auto auto; */
     /* grid-template-columns: repeat(auto-fit, minmax(min(100%/3, max(64px, 100%/5)), 1fr)); */
-    gap: 10px;
+    gap: 5px;
     margin-top: 15px;
     height: 100%;
     align-content: center;
@@ -60,13 +60,13 @@ body {
     display: block;
     width: 100%;
     height: 100%;
-    padding: 10px;
+    padding: 5px;
     object-fit: cover;
     transition: transform 0.5s ease-out;
 }
 
-.gallery-image:hover {
-    transform: scale(1.10);
+.gallery-item :hover {
+    transform: scale(1.1);
 }
 
 @supports (display: grid) {
@@ -80,4 +80,42 @@ body {
     .gallery-item {
         margin: 0;
     }
+}
+
+.download-wrap {
+    position: fixed;
+    /* top: 100%; */
+    bottom: 0%;
+    right: 0%;
+    margin: 30px;
+}
+
+
+.circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    font-size: 2.5rem;
+    background: #14171A;
+    background-image: url(/download_2.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px #AAB8C2;
+}
+
+.circle:hover {
+    background: #c0c0c0d0;
+    background-image: url(/download_2.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    color: #14171A;
+    outline: none;
 }
