@@ -7,9 +7,6 @@ interface TextObject {
     x: number;
     y: number;
 }
-interface CanvasComponentProps {
-    blob: Blob | null;
-}
 
 interface CanvasComponentState {
     isImageLoaded: boolean;
@@ -18,10 +15,10 @@ interface CanvasComponentState {
 }
 
 
-export class CanvasEditor extends Component<CanvasComponentProps, CanvasComponentState> {
+export class CanvasEditor extends Component<{}, CanvasComponentState> {
     private canvasRef: RefObject<HTMLCanvasElement>;
     private location: ReturnType<typeof useLocation>;
-    constructor(props: CanvasComponentProps) {
+    constructor(props: {}) {
         super(props);
         this.state = {
             isImageLoaded: false,
@@ -52,7 +49,7 @@ export class CanvasEditor extends Component<CanvasComponentProps, CanvasComponen
     // };
 
     componentDidMount() {
-        console.log('canvas:',this.canvasRef.current)
+        // console.log('canvas:',this.canvasRef.current)
 
         // const location = useLocation();
         // const blobs = location.state.image;
@@ -60,18 +57,16 @@ export class CanvasEditor extends Component<CanvasComponentProps, CanvasComponen
         //     // const url = URL.createObjectURL(blob);
         //     // this.loadImage();
 
-        //     // Clean up the object URL to avoid memory leaks
         //     // URL.revokeObjectURL(url);
         // }
+        console.log('todo')
     }
-    componentDidUpdate(prevProps: CanvasComponentProps) {
+    componentDidUpdate() {
         // if (prevProps.blob !== this.props.blob) {
         //     const { blob } = this.props;
         //     if (blob) {
         //         const url = URL.createObjectURL(blob);
         //         // this.loadImage();
-
-        //         // Clean up the object URL to avoid memory leaks
         //         URL.revokeObjectURL(url);
         //     }
         // }
@@ -117,6 +112,7 @@ export class CanvasEditor extends Component<CanvasComponentProps, CanvasComponen
         const { isImageLoaded, text } = this.state;
         return (
             <div>
+                <p>Not in a working phase</p>
                 <button onClick={this.handleAddText}>Add Text</button>
                 <canvas
                     ref={this.canvasRef}
@@ -136,92 +132,4 @@ export class CanvasEditor extends Component<CanvasComponentProps, CanvasComponen
         );
     }
 }
-
-
-// export const CanvasEditor: React.FC = (props) => {
-//     const canvasRef = useRef<HTMLCanvasElement | null>(null);
-//     const [text, setText] = useState<string>('');
-//     const [textObjects, setTextObjects] = useState<TextObject[]>([]);
-//     const location = useLocation();
-//     const image = location.state.image;
-//     console.log(image);
-//     // drawing 
-
-//     if (canvasRef.current) {
-//         console.log('canvas can be printed');
-//     } else {
-//         console.log('canvas not initialised');
-//     }
-
-//     const handleDrawing = async () => {
-//         if (canvasRef.current) {
-//             const canvas = canvasRef.current;
-//             const context = canvas?.getContext('2d');
-//             const img = new Image();
-//             if (context) {
-//                 img.onload = () => {
-//                     context.drawImage(img, 0, 0, canvas.width, canvas.height);
-//                 }
-//                 img.src = URL.createObjectURL(image[0]);
-//             }
-//             URL.revokeObjectURL(img.src);
-//         }
-//     }
-
-//     handleDrawing();
-
-//     const handleAddText = () => {
-//         if (text.trim() !== '') {
-//             setTextObjects([
-//                 ...textObjects,
-//                 {
-//                     text,
-//                     x: Math.random() * 400,
-//                     y: Math.random() * 400,
-//                 },
-//             ]);
-//             setText('');
-//         }
-//     };
-
-//     const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-//         setText(event.target.value);
-//     };
-
-//     const drawTextObjects = () => {
-//         const canvas = canvasRef.current;
-//         if (!canvas) return;
-
-//         const ctx = canvas.getContext('2d');
-//         if (!ctx) return;
-
-//         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-//         textObjects.forEach(({ text, x, y }) => {
-//             ctx.fillStyle = '#000';
-//             ctx.font = '20px Arial';
-//             ctx.fillText(text, x, y);
-//         });
-//     };
-
-//     return (
-//         <div>
-//             <button onClick={handleAddText}>Add Text</button>
-//             <canvas
-//                 ref={canvasRef}
-//                 width={500}
-//                 height={500}
-//                 style={{ border: '1px solid #ccc' }}
-//                 onClick={drawTextObjects}
-//             />
-//             <input
-//                 type="text"
-//                 placeholder="Type here..."
-//                 value={text}
-//                 onChange={handleTextChange}
-//                 style={{ marginBottom: '10px' }}
-//             />
-//         </div>
-//     );
-// };
 export default CanvasEditor;

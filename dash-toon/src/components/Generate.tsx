@@ -78,7 +78,7 @@ class Generate extends Component<{}, State> {
 
     handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        if (this.state.counter < 0) return;  //change to 4
+        if (this.state.counter < 4) return;  //change to 4
         const ispending = false;
         const image = null;
         this.setState({ ispending });
