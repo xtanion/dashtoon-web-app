@@ -24,11 +24,11 @@ body {
 
 .container-image {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 2fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 2fr));
     /* grid-auto-flow: column; */
     /* grid-template-columns: auto auto; */
     /* grid-template-columns: repeat(auto-fit, minmax(min(100%/3, max(64px, 100%/5)), 1fr)); */
-    gap: 5px;
+    gap: 10px;
     margin-top: 15px;
     height: 100%;
     align-content: center;
@@ -45,7 +45,7 @@ body {
 
 .gallery-item {
     /* display: inline-flex; */
-    max-width: 300px;
+    max-width: 700px;
     width: 100%;
     height: 100%;
     /* Minimum width of 24rem and grow to fit available space */
@@ -90,7 +90,6 @@ body {
     margin: 30px;
 }
 
-
 .circle {
     display: flex;
     justify-content: center;
@@ -117,5 +116,34 @@ body {
     background-repeat: no-repeat;
     background-size: 30px;
     color: #14171A;
+    outline: none;
+}
+
+.circle-rev {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: #f1f1f1;
+    background-image: url(/pencil2.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    color: #050505;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 10px;
+    box-shadow: 5px 5px 10px #AAB8C2;
+}
+
+.circle-rev:hover {
+    background: #202020d0;
+    background-image: url(/pencil1.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    color: #f1f1f1;
     outline: none;
 }

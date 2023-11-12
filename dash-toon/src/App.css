@@ -13,6 +13,15 @@ body > #root {
   text-align: center;
 }
 
+.header-sticky {
+  flex: 0 0 auto;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 600;
+}
+
 .page {
   display: flex;
   flex-direction: column;

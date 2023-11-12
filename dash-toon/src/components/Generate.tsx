@@ -4,6 +4,8 @@ import '../index.css'
 import './Output'
 import { IndvImage } from './Image';
 import { Spinner } from './Spinner';
+import { CanvasElement } from './Canvas';
+import { CanvasEditor } from './Editor';
 
 interface State {
     ispending: boolean;
@@ -11,6 +13,7 @@ interface State {
     image: Blob[] | null,
     counter: number;
     error: Error | null;
+    editor: boolean;
 }
 
 class Generate extends Component<{}, State> {
@@ -22,6 +25,7 @@ class Generate extends Component<{}, State> {
             image: null,
             counter: 0,
             error: null,
+            editor: false
         };
     }
 
@@ -74,6 +78,7 @@ class Generate extends Component<{}, State> {
 
     handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
+        if (this.state.counter < 0) return;  //change to 4
         const ispending = false;
         const image = null;
         this.setState({ ispending });
@@ -83,12 +88,14 @@ class Generate extends Component<{}, State> {
     };
 
     render() {
-        const { ispending, description, image, counter, error } = this.state;
+        const { ispending, description, image, counter, error , editor} = this.state;
         return (
             <div className='task-page'>
                 <div className='image-prompt-form-wrapper'>
+                    <div className='description-text-wrapper'>
+                        <p className='description-text'>Provide 10 prompts separated by comma</p>
+                    </div>
                     <form className='image-prompt-form desktop' autoComplete='off' onSubmit={this.handleSubmit}>
-                        {/* <label><span className="screen-reader-text">Search for:</span></label> */}
                         <input
                             type="text"
                             name="description"
@@ -110,12 +117,12 @@ class Generate extends Component<{}, State> {
                 </div>
 
                 <div className='task-page-generations'>
-                    {image ? (<IndvImage image={image} />) : (<div> </div>)}
+                    {image && !editor ? (<IndvImage image={image} />) : (<div> </div>)}
+                    {/* {image ? (<CanvasElement image={image}/>) : (<div> </div>)} */}
                 </div>
-                {/* <div className='download-wrap'>
-                    <button className="circle">
-                        <i className='fa fa-arrow-right'></i>
-                    </button>
+
+                {/* <div className='canvas-editor'>
+                    {editor? (<CanvasEditor blob={image[0]} />) : (<div> </div>)}
                 </div> */}
             </div>
 

@@ -1,7 +1,16 @@
 import React, {useRef} from "react"
 import './image.css'
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Link
+} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 export const IndvImage = ({ image }: { image: Blob[] }) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
+    let imageURL = null;
     const handleDownloadGrid = async () => {
         if (canvasRef.current) {
             const canvas = canvasRef.current;
@@ -32,11 +41,12 @@ export const IndvImage = ({ image }: { image: Blob[] }) => {
                 images.forEach((img, i) => {
                     const x = (i % colm) * 256;
                     const y = Math.floor(i / colm) * 256;
-                    context.drawImage(img, x+p, y+p, 256, 256); // Adjust the width and height as needed
+                    context.drawImage(img, x+p, y+p, 256, 256);
                 });
 
                 const link = document.createElement('a');
-                link.href = canvas.toDataURL('image/png');
+                imageURL = canvas.toDataURL('image/png');
+                link.href = imageURL;
                 link.download = 'panel_10.png';
                 document.body.appendChild(link);
                 link.click();
@@ -44,6 +54,13 @@ export const IndvImage = ({ image }: { image: Blob[] }) => {
             }
         }
     }
+
+    // const handleButtonEditor = () => {
+    //     if (imageURL == null) {
+    //         handleDownloadGrid;
+    //     }
+
+    // }
     return (
         <div className="container-image">
             {image.map((imgblob, index) => (
@@ -54,8 +71,12 @@ export const IndvImage = ({ image }: { image: Blob[] }) => {
                 </div>
             ))}
 
-            {/* <button onClick={handleDownloadGrid}> Downlaod Grid </button> */}
             <div className='download-wrap'>
+                <Link to="/editor" state={{image}}>
+                    <button className="circle-rev">
+                        <i className='fa fa-arrow-right'></i>
+                    </button>
+                </Link>
                 <button className="circle" onClick={handleDownloadGrid}>
                     <i className='fa fa-arrow-right'></i>
                 </button>

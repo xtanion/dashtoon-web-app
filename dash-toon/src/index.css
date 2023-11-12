@@ -118,7 +118,7 @@ body,
   border: 0;
   border-radius: 0 6px 6px 0;
   display: flex;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   height: 100%;
   padding-left: 14px;
@@ -173,6 +173,22 @@ body,
 }
 }
 
+.description-text-wrapper {
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.description-text {
+  width: 100%;
+  text-align: left;
+  color: #4d4d4d;
+  font-weight: 500;
+  font-size: 14px;
+  margin: 5px;
+}
+
 .error-message-wrapper{
   position: relative;
   width: 100%;
@@ -184,5 +200,5 @@ body,
   color: #e65959;
   font-weight: 300;
   font-size: 11px;
-  margin: 5px;
+  margin: 10px;
 }
