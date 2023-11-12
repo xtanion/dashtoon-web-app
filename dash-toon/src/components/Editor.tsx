@@ -17,7 +17,7 @@ interface CanvasComponentState {
 
 export class CanvasEditor extends Component<{}, CanvasComponentState> {
     private canvasRef: RefObject<HTMLCanvasElement>;
-    private location: ReturnType<typeof useLocation>;
+    // private location: ReturnType<typeof useLocation>;
     constructor(props: {}) {
         super(props);
         this.state = {
