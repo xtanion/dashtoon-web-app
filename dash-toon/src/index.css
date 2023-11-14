@@ -55,12 +55,18 @@ body,
   width: 100%;
 }
 
+.error-wrapper{
+  top: 50%;
+  position: fixed;
+  width: 100%;
+}
+
 .image-prompt-form.desktop {
   position: relative;
   align-items: center;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   height: 44px;
 }
 

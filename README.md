@@ -16,3 +16,5 @@ Adittionaly, you can download the image by clicking the `downlaod-icon` on the b
 
 ## Editing
 Canvas Editing is still in progress ([source](https://github.com/xtanion/dashtoon-web-app/blob/main/dash-toon/src/components/Editor.tsx)).
+
+(Design Inspiration: DALL.E)
